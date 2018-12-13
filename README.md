@@ -1,6 +1,6 @@
 # KrackerGo
 
-PBKDF2 SHA256 Cracker for Gogs
+PBKDF2 SHA256 Hash Cracker for Gogs
 
 # Usage
 
@@ -9,7 +9,6 @@ brew install golang
 export GOPATH=`pwd`
 cd src
 go run kracker.go
-
 ```
 
 ```
@@ -27,7 +26,6 @@ go run kracker.go
 $ go run kracker.go
 [Cracked]  root toor 30aa3f0f7ffe440cd8c808154fca0f4a555e896de8ba7e285ad0c125eed81d47b89fdbdf14abb83bcb7a5a4aa57dcbd138af LU5pzgLZ6l
 pwdfile read ok!
-
 ```
 
 
@@ -44,11 +42,16 @@ Hash数据放在`user.csv`中，分三列，分别是username/hash/salt。
 
 # Hashcat
 
-Hashcat支持破解PBKDF2 SHA256，但是参数格式没弄明白，懒得折腾，所以写了这个工具KrackerGo临时用用。Hashcat相关信息如下：
+Hashcat支持破解PBKDF2 SHA256，但是参数格式没弄明白，懒得折腾，所以写了KrackerGo临时用用。
 
-hashcat -m 10900 --force hash.txt password.txt
+Hashcat命令相关信息如下：
 
-hash.txt内容：`sha256:10000:TFU1cHpnTFo2bAo=:MKo/D3/+RAzYyAgVT8oPSlVeiW3oun4oWtDBJe7YHUe4n9vfFKu4O8t6WkqlfcvROK8=`
+`hashcat -m 10900 --force hash.txt password.txt`
+
+hash.txt内容：
+
+`sha256:10000:TFU1cHpnTFo2bAo=:MKo/D3/+RAzYyAgVT8oPSlVeiW3oun4oWtDBJe7YHUe4n9vfFKu4O8t6WkqlfcvROK8=`
 
 salt和hash都需要转换成base64格式，可以参考这篇：
+
 https://github.com/hashcat/hashcat/issues/1583
